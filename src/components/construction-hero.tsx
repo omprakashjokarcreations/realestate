@@ -110,8 +110,6 @@ export function ConstructionHero() {
       disposed = true;
       trigger?.kill();
       cancelAnimationFrame(frame);
-      clearTimeout(timeout);
-      clearInterval(watchdog);
       media.removeEventListener('loadedmetadata', onLoaded);
       media.removeEventListener('loadeddata', onLoaded);
       media.removeEventListener('progress', setup);
