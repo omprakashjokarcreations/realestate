@@ -8,6 +8,7 @@ import { constructionVideo, progressToTime } from '@/lib/video-config';
 export function ConstructionHero() {
   const hero = useRef<HTMLElement>(null);
   const video = useRef<HTMLVideoElement>(null);
+  const heading = useRef<HTMLDivElement>(null);
   const copy = useRef<HTMLDivElement>(null);
   const bar = useRef<HTMLDivElement>(null);
   const [fallback, setFallback] = useState(false);
@@ -24,7 +25,16 @@ export function ConstructionHero() {
     let target = 0;
     let disposed = false;
     let seekStarted = 0;
+    let currentStage = 0;
     let watchdog: ReturnType<typeof setInterval> | undefined;
+    // Text depth is a separate visual plane; it never changes the media target.
+    const updateDepth = (progress: number) => {
+      if (heading.current) heading.current.style.transform = `translate3d(0, ${-12 * progress}px, 0) scale(${1 - 0.018 * progress})`;
+      if (copy.current) {
+        copy.current.style.opacity = String(Math.max(0, 1 - progress * 1.6));
+        copy.current.style.transform = `translate3d(0, ${-6 * progress}px, 0)`;
+      }
+    };
     const fail = () => {
       if (disposed) return;
       setFallback(true);
@@ -32,7 +42,7 @@ export function ConstructionHero() {
       trigger = undefined;
       cancelAnimationFrame(frame);
       frame = 0;
-      if (copy.current) copy.current.style.opacity = '1';
+      updateDepth(0);
       ScrollTrigger.refresh();
     };
     const seek = () => {
@@ -54,17 +64,21 @@ export function ConstructionHero() {
           const progress = Math.min(1, self.progress / 0.94);
           target = progressToTime(progress, media.duration);
           schedule();
-          setStage(Math.min(4, Math.floor(progress * 5)));
-          if (copy.current) copy.current.style.opacity = String(Math.max(0, 1 - progress * 1.6));
+          const nextStage = Math.min(4, Math.floor(progress * 5));
+          if (nextStage !== currentStage) { currentStage = nextStage; setStage(nextStage); }
+          updateDepth(progress);
           if (bar.current) bar.current.style.transform = `scaleX(${progress})`;
         },
       });
       target = progressToTime(Math.min(1, trigger.progress / 0.94), media.duration);
+      updateDepth(Math.min(1, trigger.progress / 0.94));
       schedule();
       ScrollTrigger.refresh();
     };
     const motionChange = () => {
       trigger?.kill(); trigger = undefined;
+      cancelAnimationFrame(frame); frame = 0;
+      updateDepth(0);
       if (reduced.matches) { setFallback(true); } else { setFallback(false); setup(); }
       ScrollTrigger.refresh();
     };
@@ -97,15 +111,18 @@ export function ConstructionHero() {
       </video>
       {fallback && <img className="hero-fallback" src={constructionVideo.completed} alt="" width={1280} height={720} />}
     </div>
-    <div className="hero-heading">
+    <div className="hero-contrast" aria-hidden="true" />
+    <div className="hero-overlay">
+    <div ref={heading} className="hero-heading">
       <p className="eyebrow">CUSTOM HOMES · BUILT AROUND YOU</p>
       <h1>Your dream home.<br /><span className="text-muted-foreground">Built from the ground up.</span></h1>
+    </div>
+    <div ref={copy} className="hero-support"><p>From the first foundation pour to the final detail, watch your vision take shape through thoughtful design and exceptional craftsmanship.</p></div>
       <div className="hero-actions">
         <Button asChild className="editorial-button"><a href="#contact">Start Your Project <ArrowUpRight /></a></Button>
         <a href="#process" className="text-link">Explore Our Process <ArrowUpRight size={15} /></a>
       </div>
     </div>
-    <div ref={copy} className="hero-support"><p>From the first foundation pour to the final detail, watch your vision take shape through thoughtful design and exceptional craftsmanship.</p></div>
     <div className="hero-bottom">
       <a className="scroll-cue" href="#approach"><ArrowDown size={16} /><span>A vision, taking shape</span></a>
       <div className="film-stage"><span className="stage-number">0{stage + 1}</span><span>{['The foundation', 'The framework', 'Taking shape', 'The finishing touches', 'Welcome home'][stage]}</span><div className="film-track"><div ref={bar} /></div></div>

@@ -13,4 +13,5 @@
 - Keep the editorial experience on the index route with hash navigation between its sections; this is a single continuous story.
 - Keep replaceable footage paths and timing in a browser-safe video config; this separates media from scroll behavior.
 - Use GSAP ScrollTrigger and a real paused video with serialized animation-frame seeks; this supports deterministic forward and reverse scrolling without autoplay.
+- Keep hero text depth on a separate absolute overlay driven by the same scroll progress without mutating media timing; this preserves stationary footage and reversible composition.
 - Submit enquiries through a validated public server function using an anonymous insert-only client; private enquiries must never be publicly readable.
