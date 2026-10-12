@@ -115,10 +115,6 @@ export function ConstructionHero() {
     <div className="hero-overlay">
       <div className="hero-content-left">
         <div ref={heading} className="hero-heading">
-          <div className="hero-badge-pill">
-            <span className="badge-pulse" />
-            <span>PRIME PLOTS · CUSTOM VILLAS · FAMILY LIVING</span>
-          </div>
           <h1>Find your dream plot.<br /><span>Build & move in.</span></h1>
         </div>
         <div ref={copy} className="hero-support">
@@ -129,42 +125,14 @@ export function ConstructionHero() {
           </div>
         </div>
       </div>
-      <div className="hero-dock-container">
-        <div className="hero-dock">
-          <div className="dock-tabs">
-            <a href="#featured" className="dock-tab active">Buy Plots</a>
-            <a href="#featured" className="dock-tab">Custom Villas</a>
-            <a href="#contact" className="dock-tab">Sell Land</a>
-          </div>
-          <div className="dock-fields">
-            <div className="dock-field">
-              <span className="dock-label">Location</span>
-              <span className="dock-val">Hillside Crest & Ridge</span>
-            </div>
-            <div className="dock-divider" />
-            <div className="dock-field">
-              <span className="dock-label">Property Type</span>
-              <span className="dock-val">Plots · 2,400+ sq.ft</span>
-            </div>
-            <div className="dock-divider" />
-            <div className="dock-field">
-              <span className="dock-label">Budget</span>
-              <span className="dock-val">$180k – $1.5M+</span>
-            </div>
-            <a href="#featured" className="dock-search-btn" aria-label="Search curated plots">
-              <ArrowUpRight size={18} />
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
     <div className="hero-bottom">
       <a className="scroll-cue" href="#featured"><ArrowDown size={14} /><span>Scroll down to watch construction progress</span></a>
       <div className="film-stage">
-        <span className="stage-number">0{stage + 1}</span>
         <span>{['Soil testing & plot marking', 'Foundation & footings', 'Framing & structural core', 'Interior craft & glazing', 'Move in with your family'][stage]}</span>
         <div className="film-track"><div ref={bar} /></div>
       </div>
     </div>
   </section>;
-}
+}
+

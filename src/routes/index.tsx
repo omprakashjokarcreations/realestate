@@ -44,11 +44,12 @@ const navigation = [
 ];
 
 const stages: [string, string][] = [
-  ['01 Select & Secure Plot', 'Handpicked residential land with 100% verified legal clearance, soil testing, and optimal natural topography.'],
-  ['02 Custom Villa Design', 'Floorplans and elevations designed around your family’s daily rituals, light orientation, and privacy.'],
-  ['03 Precision Turnkey Build', 'Poured concrete foundations, steel framework, and artisanal finishes managed under transparent milestone schedules.'],
-  ['04 Move-In & Belong', 'Turnkey handover with zero lingering defects, complete legal registrations, and a place your family calls home.'],
+  ['Select & Secure Plot', 'Handpicked residential land with 100% verified legal clearance, soil testing, and optimal natural topography.'],
+  ['Custom Villa Design', 'Floorplans and elevations designed around your family’s daily rituals, light orientation, and privacy.'],
+  ['Precision Turnkey Build', 'Poured concrete foundations, steel framework, and artisanal finishes managed under transparent milestone schedules.'],
+  ['Move-In & Belong', 'Turnkey handover with zero lingering defects, complete legal registrations, and a place your family calls home.'],
 ];
+
 
 
 const featuredProperties = [
@@ -160,7 +161,7 @@ function Index() {
                 <ArrowUpRight size={18} />
               </a>
             ))}
-            <a href="#contact" onClick={() => setMenu(false)} className="font-bold text-emerald-600">
+            <a href="#contact" onClick={() => setMenu(false)} className="font-bold text-foreground">
               Schedule Consultation →
             </a>
           </nav>
@@ -171,10 +172,10 @@ function Index() {
         {/* HERO SECTION WITH VIDEO TIMELAPSE & LEFT-BOTTOM MINIMAL TEXT */}
         <ConstructionHero />
 
-        {/* 01 / OUR APPROACH */}
+        {/* OUR APPROACH */}
         <section id="approach" className="section introduction">
           <div className="section-kicker">
-            <span>01 / OUR APPROACH</span>
+            <span>OUR APPROACH</span>
             <span>Real Estate · Verified Land · Custom Living</span>
           </div>
 
@@ -217,10 +218,10 @@ function Index() {
           </div>
         </section>
 
-        {/* 02 / FEATURED PLOTS & HOMES (Inspiration 1 - Bending Notch Design) */}
+        {/* FEATURED PROPERTIES */}
         <section id="featured" className="section featured-section">
           <div className="section-kicker">
-            <span>02 / FEATURED PROPERTIES</span>
+            <span>FEATURED PROPERTIES</span>
             <span>Curated Enclaves & Turnkey Villas</span>
           </div>
 
@@ -260,10 +261,10 @@ function Index() {
           </div>
         </section>
 
-        {/* 03 / THE PROCESS */}
+        {/* THE PROCESS */}
         <section id="process" className="section process-section">
           <div className="section-kicker">
-            <span>03 / THE PROCESS</span>
+            <span>THE PROCESS</span>
             <span>A clear path from idea to family move-in</span>
           </div>
           <h2 data-reveal>
@@ -273,20 +274,20 @@ function Index() {
           <div className="process-grid">
             {stages.map(([title, description]) => (
               <div className="process-step" key={title} data-reveal>
-                <span className="step-number">{title.slice(0, 2)}</span>
-                <h3>{title.slice(3)}</h3>
+                <h3>{title}</h3>
                 <p>{description}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* 04 / ARCHITECTURAL SHOWCASE (Inspiration 3 - "TERRA cotta") */}
+
+        {/* FORM & LIVING ARCHITECTURAL SHOWCASE */}
         <section id="showcase" className="architecture-section" aria-labelledby="architecture-title">
           <div className="architecture-top" data-reveal>
             <div>
-              <div className="section-kicker !text-emerald-400 !mb-4">
-                <span>04 / FORM & LIVING</span>
+              <div className="section-kicker !mb-4">
+                <span>FORM & LIVING</span>
                 <span>Architectural Excellence</span>
               </div>
               <div className="terra-title-lockup">
@@ -296,7 +297,7 @@ function Index() {
             </div>
 
             <div className="arch-specs-pill">
-              <span className="arch-pill-tag">2026 Collection</span>
+              <span className="arch-pill-tag">Collection</span>
               <span className="arch-pill-tag">Masterplanned Plots</span>
               <span className="arch-pill-tag">Custom Builds</span>
             </div>
@@ -348,14 +349,15 @@ function Index() {
             <p className="text-sm text-slate-300 max-w-xl">
               Honest materials, seismic-tested structural frameworks, and natural daylight orientation. Designed to look breathtaking on day one and grow more cherished with every passing decade.
             </p>
-            <Button asChild className="editorial-button !bg-emerald-500 !text-slate-950 hover:!bg-emerald-400">
+            <Button asChild className="editorial-button !bg-white !text-slate-900 hover:!bg-neutral-100">
               <a href="#contact">Request Estate Dossier <ArrowUpRight size={16} /></a>
             </Button>
           </div>
         </section>
 
-        {/* 05 / WHAT BUYERS ARE SAYING (Inspiration 2 - Curved Container with Testimonials) */}
+        {/* WHAT BUYERS ARE SAYING */}
         <section id="reviews" className="testimonials-section">
+
           <div className="testimonials-curved-wrapper" data-reveal>
             {/* Side pill notch buttons */}
             <button
@@ -428,10 +430,10 @@ function Index() {
           </div>
         </section>
 
-        {/* 06 / CONTACT & CONSULTATION */}
+        {/* YOUR NEXT CHAPTER */}
         <section id="contact" className="section contact-section">
           <div className="section-kicker">
-            <span>06 / YOUR NEXT CHAPTER</span>
+            <span>YOUR NEXT CHAPTER</span>
             <span>Begin With A Conversation</span>
           </div>
           <div className="contact-layout">
@@ -446,15 +448,15 @@ function Index() {
 
               <div className="mt-10 space-y-4">
                 <div className="flex items-center gap-3 text-sm font-semibold">
-                  <CheckCircle2 size={18} className="text-emerald-600" />
+                  <CheckCircle2 size={18} className="text-slate-500" />
                   <span>Free on-site plot inspections & soil analysis</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm font-semibold">
-                  <CheckCircle2 size={18} className="text-emerald-600" />
+                  <CheckCircle2 size={18} className="text-slate-500" />
                   <span>100% legal title verification & encumbrance check</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm font-semibold">
-                  <CheckCircle2 size={18} className="text-emerald-600" />
+                  <CheckCircle2 size={18} className="text-slate-500" />
                   <span>Fixed-price custom architectural build contracts</span>
                 </div>
               </div>
