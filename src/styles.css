@@ -242,10 +242,10 @@ h3 { font-weight: 450; }
   .construction-hero { min-height: 710px; }
   .hero-heading { top: 114px; left: 6%; right: 6%; }
   .hero-heading .eyebrow { font-size: 9px; }
-  .hero-heading h1 { font-size: 37px; line-height: 1.14; margin: 19px 0 23px; }
+  .hero-heading h1 { font-size: 32px; line-height: 1.14; margin: 19px 0 23px; }
   .hero-actions { gap: 20px; } .editorial-button { font-size: 10px; height: 42px; padding: 0 16px; gap: 13px; } .text-link { font-size: 10px; gap: 8px; }
-  .hero-support { left: 6%; right: 6%; top: 315px; width: auto; max-width: 320px; font-size: 11px; line-height: 1.8; }
-  .hero-film { top: 400px; bottom: 66px; } .hero-film video, .hero-fallback { object-fit: contain; }
+  .hero-support { left: 6%; right: 6%; top: 350px; width: auto; max-width: 320px; font-size: 11px; line-height: 1.8; }
+  .hero-film { top: 445px; bottom: 66px; } .hero-film video, .hero-fallback { object-fit: contain; }
   .hero-bottom { height: 66px; left: 6%; right: 6%; font-size: 9px; gap: 12px; } .scroll-cue { gap: 7px; } .film-stage { gap: 8px; } .film-track { width: 35px; }
   .section { padding: 65px 6%; } .section-kicker { margin-bottom: 40px; font-size: 8px; } .section-kicker span:last-child { text-align: right; }
   h2 { font-size: 34px; line-height: 1.18; } .intro-layout { grid-template-columns: 1fr; gap: 32px; } .intro-copy { font-size: 12px; }

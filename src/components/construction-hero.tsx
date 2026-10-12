@@ -76,6 +76,7 @@ export function ConstructionHero() {
     media.addEventListener('seeked', onSeeked);
     media.addEventListener('error', fail);
     reduced.addEventListener('change', motionChange);
+    if (media.error) fail();
     setup();
     const timeout = setTimeout(() => { if (!trigger && !reduced.matches) fail(); }, 15000);
     watchdog = setInterval(() => { if (seekStarted && performance.now() - seekStarted > 4000) fail(); }, 1000);
@@ -90,7 +91,10 @@ export function ConstructionHero() {
 
   return <section ref={hero} className="construction-hero" aria-label="Your home taking shape">
     <div className="hero-film" aria-hidden="true">
-      <video ref={video} src={constructionVideo.src} poster={constructionVideo.poster} preload="metadata" muted playsInline tabIndex={-1} className={fallback ? 'invisible' : ''} />
+      <video ref={video} poster={constructionVideo.poster} preload="metadata" muted playsInline tabIndex={-1} className={fallback ? 'invisible' : ''}>
+        <source src={constructionVideo.compatibleSrc} type="video/webm" />
+        <source src={constructionVideo.src} type="video/mp4" />
+      </video>
       {fallback && <img className="hero-fallback" src={constructionVideo.completed} alt="" width={1280} height={720} />}
     </div>
     <div className="hero-heading">
