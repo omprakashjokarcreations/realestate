@@ -4,11 +4,9 @@ import architecture from '@/assets/architecture.jpg';
 export const constructionVideo = {
   src: heroVideo,
   compatibleSrc: '/House_construction_timelapse_video_20261012105611.mp4',
-  poster: architecture,
-  completed: architecture,
   seconds: 14,
   desktopScreens: 2.8,
-  mobileScreens: 1.8,
+  mobileScreens: 2.0,
 };
 
 export function progressToTime(progress: number, duration: number) {

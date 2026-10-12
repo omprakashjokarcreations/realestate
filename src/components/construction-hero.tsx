@@ -83,35 +83,59 @@ export function ConstructionHero() {
       ScrollTrigger.refresh();
     };
     if (reduced.matches) setFallback(true);
-    media.addEventListener('loadedmetadata', setup);
-    media.addEventListener('loadeddata', setup);
+    const onLoaded = () => {
+      try {
+        if (media.currentTime === 0) {
+          media.currentTime = 0.001;
+        }
+      } catch {
+        // Ignored
+      }
+      setup();
+    };
+
+    media.addEventListener('loadedmetadata', onLoaded);
+    media.addEventListener('loadeddata', onLoaded);
     media.addEventListener('progress', setup);
-    media.addEventListener('canplay', setup);
+    media.addEventListener('canplay', onLoaded);
     media.addEventListener('seeked', onSeeked);
-    media.addEventListener('error', fail);
     reduced.addEventListener('change', motionChange);
-    if (media.error) fail();
-    setup();
-    const timeout = setTimeout(() => { if (!trigger && !reduced.matches) fail(); }, 15000);
-    watchdog = setInterval(() => { if (seekStarted && performance.now() - seekStarted > 4000) fail(); }, 1000);
+
+    // Initial trigger to load video frame right away
+    if (media.readyState >= 1) {
+      onLoaded();
+    }
+
     return () => {
-      disposed = true; trigger?.kill(); cancelAnimationFrame(frame); clearTimeout(timeout); clearInterval(watchdog);
-      media.removeEventListener('loadedmetadata', setup); media.removeEventListener('loadeddata', setup);
-      media.removeEventListener('progress', setup); media.removeEventListener('canplay', setup);
-      media.removeEventListener('seeked', onSeeked); media.removeEventListener('error', fail);
+      disposed = true;
+      trigger?.kill();
+      cancelAnimationFrame(frame);
+      clearTimeout(timeout);
+      clearInterval(watchdog);
+      media.removeEventListener('loadedmetadata', onLoaded);
+      media.removeEventListener('loadeddata', onLoaded);
+      media.removeEventListener('progress', setup);
+      media.removeEventListener('canplay', onLoaded);
+      media.removeEventListener('seeked', onSeeked);
       reduced.removeEventListener('change', motionChange);
     };
   }, []);
 
-  return <section ref={hero} className="construction-hero" aria-label="Your home taking shape">
-    <div className="hero-film" aria-hidden="true">
-      <video ref={video} poster={constructionVideo.poster} preload="auto" muted playsInline tabIndex={-1} className={fallback ? 'invisible' : ''}>
-        <source src={constructionVideo.src} type="video/mp4" />
-        <source src={constructionVideo.compatibleSrc} type="video/mp4" />
-      </video>
-      {fallback && <img className="hero-fallback" src={constructionVideo.completed} alt="" width={1280} height={720} />}
-    </div>
-    <div className="hero-contrast" aria-hidden="true" />
+  return (
+    <section ref={hero} className="construction-hero" aria-label="Your home taking shape">
+      <div className="hero-film" aria-hidden="true">
+        <video
+          ref={video}
+          preload="auto"
+          muted
+          playsInline
+          tabIndex={-1}
+        >
+          <source src={constructionVideo.compatibleSrc} type="video/mp4" />
+          <source src={constructionVideo.src} type="video/mp4" />
+        </video>
+      </div>
+      <div className="hero-contrast" aria-hidden="true" />
     <div className="hero-overlay">
       <div className="hero-content-left">
         <div ref={heading} className="hero-heading">
@@ -133,6 +157,7 @@ export function ConstructionHero() {
         <div className="film-track"><div ref={bar} /></div>
       </div>
     </div>
-  </section>;
+  </section>
+  );
 }
 
