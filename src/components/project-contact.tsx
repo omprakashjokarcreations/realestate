@@ -36,11 +36,11 @@ export function ProjectContact() {
       <label>Your name<input name="name" autoComplete="name" maxLength={100} placeholder="Full name" required aria-invalid={Boolean(errors['name'])} aria-describedby={errors['name'] ? 'name-error' : undefined} />{fieldError('name')}</label>
       <label>Email address<input name="email" type="email" autoComplete="email" maxLength={255} placeholder="you@example.com" required aria-invalid={Boolean(errors['email'])} aria-describedby={errors['email'] ? 'email-error' : undefined} />{fieldError('email')}</label>
       <label>Phone <span className="text-muted-foreground">(optional)</span><input name="phone" type="tel" autoComplete="tel" maxLength={40} placeholder="Your phone number" aria-invalid={Boolean(errors['phone'])} />{fieldError('phone')}</label>
-      <label>Project type<select name="projectType" defaultValue="Custom home"><option>Custom home</option><option>Renovation</option><option>Interior design</option><option>Not sure yet</option></select></label>
+      <label>Requirement<select name="projectType" defaultValue="Buy Residential Plot"><option>Buy Residential Plot</option><option>Custom Home Build</option><option>Turnkey Luxury Villa</option><option>Sell Plot or Property</option><option>Schedule Plot Tour</option></select></label>
     </div>
-    <label>Tell us about your vision<textarea name="description" maxLength={3000} rows={3} placeholder="The home you imagine. The way you want to live." required aria-invalid={Boolean(errors['description'])} aria-describedby={errors['description'] ? 'description-error' : undefined} />{fieldError('description')}</label>
+    <label>Tell us about your requirements<textarea name="description" maxLength={3000} rows={3} placeholder="Tell us about the location you prefer, plot size, budget, or architectural vision for your family." required aria-invalid={Boolean(errors['description'])} aria-describedby={errors['description'] ? 'description-error' : undefined} />{fieldError('description')}</label>
     <div hidden aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
-    <div className="form-bottom"><span className="text-muted-foreground">Every home begins with a conversation.</span><Button className="editorial-button" type="submit" disabled={pending}>{pending ? 'Sending' : 'Send Your Enquiry'}{pending ? <Loader2 className="animate-spin" /> : <ArrowUpRight />}</Button></div>
+    <div className="form-bottom"><span className="text-muted-foreground">Every dream property begins with a conversation.</span><Button className="editorial-button" type="submit" disabled={pending}>{pending ? 'Sending' : 'Submit Consultation Request'}{pending ? <Loader2 className="animate-spin" /> : <ArrowUpRight />}</Button></div>
     {feedback && <p role="status" className={success ? 'submission-success' : 'field-error'}>{feedback}</p>}
   </form>;
 }

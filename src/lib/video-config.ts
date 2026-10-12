@@ -1,9 +1,17 @@
-import video from '@/assets/construction-timelapse.mp4.asset.json';
-import compatibleVideo from '@/assets/construction-timelapse.webm.asset.json';
-import foundation from '@/assets/foundation.jpg.asset.json';
-import completed from '@/assets/completed.jpg.asset.json';
+import heroVideo from '@/assets/House_construction_timelapse_video_20261012105611.mp4';
+import architecture from '@/assets/architecture.jpg';
 
-export const constructionVideo = { src: video.url, compatibleSrc: compatibleVideo.url, poster: foundation.url, completed: completed.url, seconds: 10, desktopScreens: 3, mobileScreens: 1.8 };
+export const constructionVideo = {
+  src: heroVideo,
+  compatibleSrc: '/House_construction_timelapse_video_20261012105611.mp4',
+  poster: architecture,
+  completed: architecture,
+  seconds: 14,
+  desktopScreens: 2.8,
+  mobileScreens: 1.8,
+};
+
 export function progressToTime(progress: number, duration: number) {
-  return Math.max(0, Math.min(1, progress)) * Math.max(0, Math.min(10, duration) - 0.05);
-}
+  const maxTime = Number.isFinite(duration) && duration > 0 ? duration : 14;
+  return Math.max(0, Math.min(1, progress)) * Math.max(0, maxTime - 0.05);
+}

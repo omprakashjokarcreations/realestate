@@ -165,17 +165,7 @@ Build a fully functioning website, not just a static mockup.
 
 First inspect the project structure, then implement the design and video interaction. After implementation, test the scroll synchronisation, reverse scrolling, video loading, responsive behaviour and transition into the next section.
 
-remember its not a construction company
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/a1397f94-3e81-4e9e-b983-dc8574fa75de).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+This project is a high-end real estate portal for buying, selling plots, and building custom family homes.
 
 ## Development
 

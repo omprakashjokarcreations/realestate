@@ -11,7 +11,6 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
@@ -20,7 +19,7 @@ function NotFoundComponent() {
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          The property or page you're looking for doesn't exist or has been relocated.
         </p>
         <div className="mt-6">
           <Link
@@ -36,11 +35,8 @@ function NotFoundComponent() {
 }
 
 function ErrorComponent({ error, reset }: ErrorComponentProps) {
-  console.error(error);
+  console.error("Runtime error caught:", error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -49,7 +45,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
           This page didn't load
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Something went wrong loading this view. You can try refreshing or head back home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -78,12 +74,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Custom Homes — Built Around You" },
-      { name: "description", content: "Thoughtful homes, shaped around your life." },
-      { property: "og:title", content: "Custom Homes — Built Around You" },
-      { property: "og:description", content: "Thoughtful homes, shaped around your life." },
+      { title: "TERRA HAVEN | Buy Verified Plots, Build Custom Homes & Move In" },
+      {
+        name: "description",
+        content: "Find your dream plot, design your custom villa, and build your family sanctuary with verified titles, transparent pricing, and master-planned communities.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "TERRA HAVEN Real Estate & Living" },
+      { property: "og:title", content: "TERRA HAVEN — Find Your Dream Plot, Build & Move In" },
+      {
+        property: "og:description",
+        content: "Explore verified residential plots, luxury modern villas, and turnkey building solutions crafted for your family's next generation.",
+      },
+      { property: "og:image", content: "/og-image.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "TERRA HAVEN Architecture and Luxury Residential Plots" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "TERRA HAVEN — Find Your Dream Plot, Build & Move In" },
+      {
+        name: "twitter:description",
+        content: "Buy premium residential plots and build bespoke villas with trusted architectural craftsmanship.",
+      },
+      { name: "twitter:image", content: "/og-image.jpg" },
+      { name: "theme-color", content: "#0f172a" },
     ],
     links: [
       {
@@ -91,7 +105,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600&display=swap" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
